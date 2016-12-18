@@ -20,7 +20,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	FVector moveLeftRight;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	FFloat16 defaultMoveSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	FFloat16 dodgeMoveSpeed;
+
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
 	/** Returns CameraBoom subobject **/
@@ -49,5 +55,8 @@ private:
 
 	/** Move Player Left/Right */
 	void MoveLeftRight(float value);
+
+	/** Make Player dodge */
+	void Dodge();
 };
 

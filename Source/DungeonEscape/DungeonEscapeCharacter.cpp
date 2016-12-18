@@ -17,6 +17,9 @@ ADungeonEscapeCharacter::ADungeonEscapeCharacter()
 	bUseControllerRotationRoll = false;
 
 	// Configure character movement
+	defaultMoveSpeed = 600;
+	dodgeMoveSpeed = 1000;
+	GetCharacterMovement()->MaxWalkSpeed = defaultMoveSpeed;
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Rotate character to moving direction
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 640.f, 0.f);
 	GetCharacterMovement()->bConstrainToPlane = true;
@@ -95,6 +98,8 @@ void ADungeonEscapeCharacter::SetupPlayerInputComponent(class UInputComponent* P
 
 	PlayerInputComponent->BindAxis("MoveUpDown", this, &ADungeonEscapeCharacter::MoveUpDown);
 	PlayerInputComponent->BindAxis("MoveLeftRight", this, &ADungeonEscapeCharacter::MoveLeftRight);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ADungeonEscapeCharacter::Jump);
+	PlayerInputComponent->BindAction("Dodge", IE_Pressed, this, &ADungeonEscapeCharacter::Dodge);
 }
 
 void ADungeonEscapeCharacter::MoveUpDown(float value) {
@@ -109,4 +114,16 @@ void ADungeonEscapeCharacter::MoveLeftRight(float value) {
 	if (value != 0) {
 		AddMovementInput(moveLeftRight, value);
 	}
+}
+
+void ADungeonEscapeCharacter::Dodge() {
+	//TODO: play dodge animation
+	TurnOff();
+
+	//TODO: Make invincible
+
+	/** Move character*/
+	/*GetCharacterMovement()->MaxWalkSpeed = dodgeMoveSpeed;
+	Add
+	GetCharacterMovemen*/
 }
